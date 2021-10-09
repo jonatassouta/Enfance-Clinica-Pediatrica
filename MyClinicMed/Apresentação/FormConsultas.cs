@@ -47,7 +47,10 @@ namespace MyClinicMed
                     {
                         cmd.CommandText = "Select * from Especialidades where nome like ('%" + txtPesquisar.Text + "%')";
                     }
-
+                    else if (comboFiltro.Text == "Consultas")
+                    {
+                        cmd.CommandText = "Select * from Consultas where tipo like ('%" + txtPesquisar.Text + "%')";
+                    }
 
                     //recebe os dados de uma tabela apos a execuçã de uma select
                     SqlDataAdapter da = new SqlDataAdapter();
@@ -92,8 +95,55 @@ namespace MyClinicMed
                     string cpf = p.txtCpfCliente.Text = dgvPesquisa.CurrentRow.Cells[2].Value.ToString();
                     string telefone = p.txtTelefoneCliente.Text = dgvPesquisa.CurrentRow.Cells[3].Value.ToString();
                     string endereco = p.txtEndereco.Text = dgvPesquisa.CurrentRow.Cells[4].Value.ToString();
-
+                    
+                    p.tabMed.Parent = null;
+                    p.tabAgendamento.Parent = null;
+                    p.tabConsul.Parent = null;
                     p.ShowDialog();
+                }
+                else if (comboFiltro.Text == "Médicos")
+                {
+                    p.lblCodigo.Text = dgvPesquisa.CurrentRow.Cells[0].Value.ToString();
+                    p.txtNomeMédico.Text = dgvPesquisa.CurrentRow.Cells[1].Value.ToString();
+                    p.txtCrm.Text = dgvPesquisa.CurrentRow.Cells[3].Value.ToString();
+                    p.comboUF.Text = dgvPesquisa.CurrentRow.Cells[4].Value.ToString();
+                    p.txtTelefoneMed.Text = dgvPesquisa.CurrentRow.Cells[2].Value.ToString();
+                    p.comboDias.Text = dgvPesquisa.CurrentRow.Cells[5].Value.ToString();
+                    p.comboEsp.Text = dgvPesquisa.CurrentRow.Cells[6].Value.ToString();
+
+                    p.tabConsul.Parent = null;
+                    p.tabAgendamento.Parent = null;
+                    p.TabClientes.Parent = null;
+                    p.Show();
+                }
+                else if (comboFiltro.Text == "Consultas")
+                {
+                    p.lblCodigo.Text = dgvPesquisa.CurrentRow.Cells[0].Value.ToString();
+                    p.txtTipo.Text = dgvPesquisa.CurrentRow.Cells[1].Value.ToString();
+                    p.txtValor.Text = dgvPesquisa.CurrentRow.Cells[2].Value.ToString();
+
+                    p.tabMed.Parent = null;
+                    p.TabClientes.Parent = null;
+                    p.tabAgendamento.Parent = null;
+                    p.Show();
+                }
+                else if (comboFiltro.Text == "Agendamentos")
+                {
+                    p.lblCodigo.Text = dgvPesquisa.CurrentRow.Cells[0].Value.ToString();
+                    p.txtNomeAg.Text = dgvPesquisa.CurrentRow.Cells[1].Value.ToString();
+                    p.txtCpfAg.Text = dgvPesquisa.CurrentRow.Cells[2].Value.ToString();
+                    p.txtEndereAg.Text = dgvPesquisa.CurrentRow.Cells[3].Value.ToString();
+                    p.txtTelefoneAg.Text = dgvPesquisa.CurrentRow.Cells[4].Value.ToString();
+                    p.dataAgendamentoAg.Text = dgvPesquisa.CurrentRow.Cells[5].Value.ToString();
+                    p.txtHoraAg.Text = dgvPesquisa.CurrentRow.Cells[6].Value.ToString();
+                    p.comboConsultaAg.Text = dgvPesquisa.CurrentRow.Cells[7].Value.ToString();
+                    p.comboValorAg.Text = dgvPesquisa.CurrentRow.Cells[8].Value.ToString();
+                    p.comboMedicoAg.Text = dgvPesquisa.CurrentRow.Cells[9].Value.ToString();
+
+                    p.tabMed.Parent = null;
+                    p.TabClientes.Parent = null;
+                    p.tabConsul.Parent = null;
+                    p.Show();
                 }
             }
         }
@@ -101,52 +151,63 @@ namespace MyClinicMed
         private void btmDeletar_Click(object sender, EventArgs e)
         {
             cmd.Connection = con.conectar();
-
-            string nome = dgvPesquisa.CurrentRow.Cells[1].Value.ToString();
-
-            if (DialogResult.Yes == MessageBox.Show($"Tem certeza que deseja excluir o cliente {nome}? ", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            try
             {
-                try
+                string nome = dgvPesquisa.CurrentRow.Cells[1].Value.ToString();
+
+                if (DialogResult.Yes == MessageBox.Show($"Tem certeza que deseja excluir o cliente {nome}? ", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
-                    string id = dgvPesquisa.CurrentRow.Cells[0].Value.ToString();
-
-                    if (comboFiltro.Text == "Clientes")
+                    try
                     {
-                        cmd.CommandText = $"delete from Clientes where id_cliente='{id}' ";
+                        string id = dgvPesquisa.CurrentRow.Cells[0].Value.ToString();
+
+                        if (comboFiltro.Text == "Clientes")
+                        {
+                            cmd.CommandText = $"delete from Clientes where id_cliente='{id}' ";
+                        }
+                        else if (comboFiltro.Text == "Médicos")
+                        {
+                            cmd.CommandText = $"delete from Medicos where id_medico='{id}' ";
+                        }
+                        else if (comboFiltro.Text == "Especialidades")
+                        {
+                            cmd.CommandText = $"delete from Especialidades where id_especialidade='{id}' ";
+                        }
+                        else if (comboFiltro.Text == "Agendamentos")
+                        {
+                            cmd.CommandText = $"delete from Agendamentos where id_agendamento='{id}' ";
+                        }
+                        else if (comboFiltro.Text == "Consultas")
+                        {
+                            cmd.CommandText = $"delete from Consultas where id_consulta='{id}' ";
+                        }
+
+
+                        cmd.ExecuteNonQuery();
+
+                        Atualizar();
+                        MessageBox.Show("Dados removidos com sucesso");
+
                     }
-                    else if (comboFiltro.Text == "Médicos")
+                    catch (Exception erro)
                     {
-                        cmd.CommandText = $"delete from Medicos where id_medico='{id}' ";
+                        MessageBox.Show("Algo deu errado" + erro);
                     }
-                    else if (comboFiltro.Text == "Especialidades")
+                    finally
                     {
-                        cmd.CommandText = $"delete from Especialidades where id_especialidade='{id}' ";
+                        con.conectar();
                     }
-                    else if (comboFiltro.Text == "Agendamentos")
-                    {
-                        cmd.CommandText = $"delete from Agendamentos where id_agendamento='{id}' ";
-                    }
-
-
-                    cmd.ExecuteNonQuery();
-
-                    Atualizar();
-                    MessageBox.Show("Dados removidos com sucesso");
-
                 }
-                catch (Exception erro)
+                else
                 {
-                    MessageBox.Show("Algo deu errado" + erro);
-                }
-                finally
-                {
-                    con.conectar();
+                    con.desconectar();
                 }
             }
-            else
+            catch (System.NullReferenceException xe)
             {
-                con.desconectar();
+                MessageBox.Show(xe.Message);
             }
+            
         }
 
         public void Atualizar()
@@ -171,6 +232,10 @@ namespace MyClinicMed
                     else if (comboFiltro.Text == "Agendamentos")
                     {
                         cmd.CommandText = "Select * from Agendamentos;";
+                    }
+                    else if (comboFiltro.Text == "Consultas")
+                    {
+                        cmd.CommandText = "Select * from Consultas;";
                     }
 
                     //recebe os dados de uma tabela apos a execuçã de uma select
@@ -201,6 +266,20 @@ namespace MyClinicMed
         private void btmPesquisar_Click(object sender, EventArgs e)
         {
             Atualizar();
+        }
+
+        private void comboFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboFiltro.Text == "Agendamentos")
+            {
+                btmVisualizar.Enabled = true;
+                btmVisualizar.Visible = true;
+            }
+            else
+            {
+                btmVisualizar.Enabled = false;
+                btmVisualizar.Visible = false;
+            }
         }
     }
 }

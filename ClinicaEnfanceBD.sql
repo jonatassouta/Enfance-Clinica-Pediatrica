@@ -46,6 +46,7 @@ create table Agendamentos(
 	id_agendamento int identity not null primary key,
 	nome_cliente varchar(100),
 	cpf_cliente varchar(15),
+	endereco varchar(100),
 	telefone_cliente varchar(16),
 	data_agendamento varchar(50),
 	hora_agendamento varchar(10),
@@ -54,6 +55,6 @@ create table Agendamentos(
 	medico varchar(100)
 );
 
-select * from Clientes;
+select * from U;
 
-drop table Agendamentos;
+drop table Usuarios;

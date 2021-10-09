@@ -52,6 +52,9 @@ namespace MyClinicMed.Apresentação
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboEsp = new System.Windows.Forms.ComboBox();
+            this.medicosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clinicaEnfanceDataSet1 = new MyClinicMed.ClinicaEnfanceDataSet1();
+            this.especialidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.comboUF = new System.Windows.Forms.ComboBox();
             this.btmLimparMed = new System.Windows.Forms.Button();
@@ -66,21 +69,33 @@ namespace MyClinicMed.Apresentação
             this.txtCrm = new System.Windows.Forms.MaskedTextBox();
             this.txtNomeMédico = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.clinicaEnfanceDataSet1 = new MyClinicMed.ClinicaEnfanceDataSet1();
-            this.especialidadesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.especialidadesTableAdapter = new MyClinicMed.ClinicaEnfanceDataSet1TableAdapters.EspecialidadesTableAdapter();
-            this.medicosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.medicosTableAdapter = new MyClinicMed.ClinicaEnfanceDataSet1TableAdapters.MedicosTableAdapter();
             this.tabCadConsultas = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtValor = new System.Windows.Forms.NumericUpDown();
+            this.comboMedicoCon = new System.Windows.Forms.ComboBox();
+            this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clinicaEnfanceAtu = new MyClinicMed.ClinicaEnfanceAtu();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtTipo = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btmCadConsulta = new System.Windows.Forms.Button();
+            this.especialidadesTableAdapter = new MyClinicMed.ClinicaEnfanceDataSet1TableAdapters.EspecialidadesTableAdapter();
+            this.medicosTableAdapter = new MyClinicMed.ClinicaEnfanceDataSet1TableAdapters.MedicosTableAdapter();
+            this.consultasTableAdapter = new MyClinicMed.ClinicaEnfanceAtuTableAdapters.ConsultasTableAdapter();
             this.tabCadCliente.SuspendLayout();
             this.tabCliente.SuspendLayout();
             this.tabMedicos.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabCadConsultas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtValor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceAtu)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCadCliente
@@ -112,7 +127,7 @@ namespace MyClinicMed.Apresentação
             this.tabCliente.Padding = new System.Windows.Forms.Padding(3);
             this.tabCliente.Size = new System.Drawing.Size(773, 530);
             this.tabCliente.TabIndex = 1;
-            this.tabCliente.Text = "Clientes";
+            this.tabCliente.Text = "Paciente";
             this.tabCliente.UseVisualStyleBackColor = true;
             // 
             // btmLimpar
@@ -318,6 +333,21 @@ namespace MyClinicMed.Apresentação
             this.comboEsp.TabIndex = 24;
             this.comboEsp.ValueMember = "id_especialidade";
             // 
+            // medicosBindingSource
+            // 
+            this.medicosBindingSource.DataMember = "Medicos";
+            this.medicosBindingSource.DataSource = this.clinicaEnfanceDataSet1;
+            // 
+            // clinicaEnfanceDataSet1
+            // 
+            this.clinicaEnfanceDataSet1.DataSetName = "ClinicaEnfanceDataSet1";
+            this.clinicaEnfanceDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // especialidadesBindingSource
+            // 
+            this.especialidadesBindingSource.DataMember = "Especialidades";
+            this.especialidadesBindingSource.DataSource = this.clinicaEnfanceDataSet1;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -479,31 +509,16 @@ namespace MyClinicMed.Apresentação
             this.label8.TabIndex = 9;
             this.label8.Text = "Nome:";
             // 
-            // clinicaEnfanceDataSet1
-            // 
-            this.clinicaEnfanceDataSet1.DataSetName = "ClinicaEnfanceDataSet1";
-            this.clinicaEnfanceDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // especialidadesBindingSource
-            // 
-            this.especialidadesBindingSource.DataMember = "Especialidades";
-            this.especialidadesBindingSource.DataSource = this.clinicaEnfanceDataSet1;
-            // 
-            // especialidadesTableAdapter
-            // 
-            this.especialidadesTableAdapter.ClearBeforeFill = true;
-            // 
-            // medicosBindingSource
-            // 
-            this.medicosBindingSource.DataMember = "Medicos";
-            this.medicosBindingSource.DataSource = this.clinicaEnfanceDataSet1;
-            // 
-            // medicosTableAdapter
-            // 
-            this.medicosTableAdapter.ClearBeforeFill = true;
-            // 
             // tabCadConsultas
             // 
+            this.tabCadConsultas.Controls.Add(this.button1);
+            this.tabCadConsultas.Controls.Add(this.txtValor);
+            this.tabCadConsultas.Controls.Add(this.comboMedicoCon);
+            this.tabCadConsultas.Controls.Add(this.label15);
+            this.tabCadConsultas.Controls.Add(this.label14);
+            this.tabCadConsultas.Controls.Add(this.txtTipo);
+            this.tabCadConsultas.Controls.Add(this.label13);
+            this.tabCadConsultas.Controls.Add(this.btmCadConsulta);
             this.tabCadConsultas.Location = new System.Drawing.Point(4, 30);
             this.tabCadConsultas.Name = "tabCadConsultas";
             this.tabCadConsultas.Padding = new System.Windows.Forms.Padding(3);
@@ -511,6 +526,106 @@ namespace MyClinicMed.Apresentação
             this.tabCadConsultas.TabIndex = 3;
             this.tabCadConsultas.Text = "Consultas";
             this.tabCadConsultas.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(421, 403);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 46);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Limpar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtValor
+            // 
+            this.txtValor.Location = new System.Drawing.Point(310, 229);
+            this.txtValor.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(120, 27);
+            this.txtValor.TabIndex = 8;
+            // 
+            // comboMedicoCon
+            // 
+            this.comboMedicoCon.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.consultasBindingSource, "id_medico", true));
+            this.comboMedicoCon.DataSource = this.medicosBindingSource;
+            this.comboMedicoCon.DisplayMember = "nome_medico";
+            this.comboMedicoCon.FormattingEnabled = true;
+            this.comboMedicoCon.Location = new System.Drawing.Point(310, 273);
+            this.comboMedicoCon.Name = "comboMedicoCon";
+            this.comboMedicoCon.Size = new System.Drawing.Size(253, 29);
+            this.comboMedicoCon.TabIndex = 7;
+            this.comboMedicoCon.ValueMember = "id_medico";
+            // 
+            // consultasBindingSource
+            // 
+            this.consultasBindingSource.DataMember = "Consultas";
+            this.consultasBindingSource.DataSource = this.clinicaEnfanceAtu;
+            // 
+            // clinicaEnfanceAtu
+            // 
+            this.clinicaEnfanceAtu.DataSetName = "ClinicaEnfanceAtu";
+            this.clinicaEnfanceAtu.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(216, 273);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 21);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Médico:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(216, 231);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 21);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Valor:";
+            // 
+            // txtTipo
+            // 
+            this.txtTipo.Location = new System.Drawing.Point(310, 180);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(253, 27);
+            this.txtTipo.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(216, 186);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 21);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Tipo:";
+            // 
+            // btmCadConsulta
+            // 
+            this.btmCadConsulta.Location = new System.Drawing.Point(240, 403);
+            this.btmCadConsulta.Name = "btmCadConsulta";
+            this.btmCadConsulta.Size = new System.Drawing.Size(118, 46);
+            this.btmCadConsulta.TabIndex = 0;
+            this.btmCadConsulta.Text = "Cadastrar";
+            this.btmCadConsulta.UseVisualStyleBackColor = true;
+            this.btmCadConsulta.Click += new System.EventHandler(this.btmCadConsulta_Click);
+            // 
+            // especialidadesTableAdapter
+            // 
+            this.especialidadesTableAdapter.ClearBeforeFill = true;
+            // 
+            // medicosTableAdapter
+            // 
+            this.medicosTableAdapter.ClearBeforeFill = true;
+            // 
+            // consultasTableAdapter
+            // 
+            this.consultasTableAdapter.ClearBeforeFill = true;
             // 
             // FormCadastros
             // 
@@ -532,10 +647,15 @@ namespace MyClinicMed.Apresentação
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.especialidadesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabCadConsultas.ResumeLayout(false);
+            this.tabCadConsultas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtValor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceAtu)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -584,5 +704,16 @@ namespace MyClinicMed.Apresentação
         private System.Windows.Forms.BindingSource medicosBindingSource;
         private ClinicaEnfanceDataSet1TableAdapters.MedicosTableAdapter medicosTableAdapter;
         private System.Windows.Forms.TabPage tabCadConsultas;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown txtValor;
+        private System.Windows.Forms.ComboBox comboMedicoCon;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtTipo;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btmCadConsulta;
+        private ClinicaEnfanceAtu clinicaEnfanceAtu;
+        private System.Windows.Forms.BindingSource consultasBindingSource;
+        private ClinicaEnfanceAtuTableAdapters.ConsultasTableAdapter consultasTableAdapter;
     }
 }

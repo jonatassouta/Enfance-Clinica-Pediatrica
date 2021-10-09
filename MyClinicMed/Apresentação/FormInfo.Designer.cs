@@ -90,9 +90,11 @@ namespace MyClinicMed.Apresentação
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(452, 424);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 126);
+            this.label3.Size = new System.Drawing.Size(291, 105);
             this.label3.TabIndex = 5;
-            this.label3.Text = resources.GetString("label3.Text");
+            this.label3.Text = "Lorem ipsum dolor sit amet, adipisci\r\nconsectetur adipiscing elit. adipiscin\r\nMor" +
+    "bi neque augue, mollis quisadipi\r\n lacus eu, posuere fringilla mauris. ad\r\nLorem" +
+    " ipsum dolor sit amet, adipisci\r\n";
             // 
             // pictureBox1
             // 
@@ -143,7 +145,7 @@ namespace MyClinicMed.Apresentação
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormInfo";
             this.Text = "FormInfo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

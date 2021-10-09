@@ -27,6 +27,10 @@ namespace MyClinicMed
             if (controle.tem)//messagem sucesso
             {
                 MessageBox.Show(mensagem, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txtConfirmarSenha.Text = "";
+                txtSenhaCadastro.Text = "";
+                txtUsuarioCadastro.Text = "";
             }
             else
             {

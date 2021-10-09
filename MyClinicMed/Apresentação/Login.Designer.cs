@@ -279,7 +279,7 @@ namespace MyClinicMed
         private System.Windows.Forms.Button btmMinimizar;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.LinkLabel linkCadastro;
-        private System.Windows.Forms.TextBox txtUsuario;
+        public System.Windows.Forms.TextBox txtUsuario;
     }
 }
 

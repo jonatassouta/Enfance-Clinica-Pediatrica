@@ -31,6 +31,7 @@ namespace MyClinicMed
         {
             this.tabConsultas = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btmVisualizar = new System.Windows.Forms.Button();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.btmDeletar = new System.Windows.Forms.Button();
             this.btmAlterar = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@ namespace MyClinicMed
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btmVisualizar);
             this.tabPage2.Controls.Add(this.comboFiltro);
             this.tabPage2.Controls.Add(this.btmDeletar);
             this.tabPage2.Controls.Add(this.btmAlterar);
@@ -70,6 +72,17 @@ namespace MyClinicMed
             this.tabPage2.Text = "Consultas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btmVisualizar
+            // 
+            this.btmVisualizar.Enabled = false;
+            this.btmVisualizar.Location = new System.Drawing.Point(676, 18);
+            this.btmVisualizar.Name = "btmVisualizar";
+            this.btmVisualizar.Size = new System.Drawing.Size(94, 34);
+            this.btmVisualizar.TabIndex = 9;
+            this.btmVisualizar.Text = "Visualizar";
+            this.btmVisualizar.UseVisualStyleBackColor = true;
+            this.btmVisualizar.Visible = false;
+            // 
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
@@ -83,6 +96,7 @@ namespace MyClinicMed
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(121, 29);
             this.comboFiltro.TabIndex = 8;
+            this.comboFiltro.SelectedIndexChanged += new System.EventHandler(this.comboFiltro_SelectedIndexChanged);
             // 
             // btmDeletar
             // 
@@ -123,7 +137,7 @@ namespace MyClinicMed
             // 
             this.dgvPesquisa.AllowUserToAddRows = false;
             this.dgvPesquisa.AllowUserToDeleteRows = false;
-            this.dgvPesquisa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPesquisa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPesquisa.Location = new System.Drawing.Point(8, 72);
             this.dgvPesquisa.Name = "dgvPesquisa";
@@ -180,5 +194,6 @@ namespace MyClinicMed
         private System.Windows.Forms.Label lblPesquisar;
         private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.ComboBox comboFiltro;
+        private System.Windows.Forms.Button btmVisualizar;
     }
 }

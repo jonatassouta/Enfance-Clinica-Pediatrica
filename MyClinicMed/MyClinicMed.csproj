@@ -70,6 +70,11 @@
     <Compile Include="Apresentação\FormInfo.Designer.cs">
       <DependentUpon>FormInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClinicaEnfanceAtu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicaEnfanceAtu.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ClinicaEnfanceDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,6 +158,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClinicaEnfanceAtu.xsc">
+      <DependentUpon>ClinicaEnfanceAtu.xsd</DependentUpon>
+    </None>
+    <None Include="ClinicaEnfanceAtu.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ClinicaEnfanceAtu.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClinicaEnfanceAtu.xss">
+      <DependentUpon>ClinicaEnfanceAtu.xsd</DependentUpon>
+    </None>
     <None Include="ClinicaEnfanceDataSet1.xsc">
       <DependentUpon>ClinicaEnfanceDataSet1.xsd</DependentUpon>
     </None>

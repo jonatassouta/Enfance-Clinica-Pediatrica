@@ -102,7 +102,7 @@ namespace MyClinicMed.Apresentação
 
         private void btmCadEspec_Click(object sender, EventArgs e)
         {
-            cmd.Connection  = con.conectar();
+            cmd.Connection = con.conectar();
 
             if (txtNomeEspecialidade.Text == "")
             {
@@ -207,12 +207,71 @@ namespace MyClinicMed.Apresentação
 
         private void FormCadastros_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'clinicaEnfanceAtu.Consultas'. Você pode movê-la ou removê-la conforme necessário.
+            this.consultasTableAdapter.Fill(this.clinicaEnfanceAtu.Consultas);
             // TODO: esta linha de código carrega dados na tabela 'clinicaEnfanceDataSet1.Medicos'. Você pode movê-la ou removê-la conforme necessário.
             this.medicosTableAdapter.Fill(this.clinicaEnfanceDataSet1.Medicos);
             // TODO: esta linha de código carrega dados na tabela 'clinicaEnfanceDataSet1.Especialidades'. Você pode movê-la ou removê-la conforme necessário.
             this.especialidadesTableAdapter.Fill(this.clinicaEnfanceDataSet1.Especialidades);
             // TODO: esta linha de código carrega dados na tabela 'clinicaEnfanceDataSet1.Medicos'. Você pode movê-la ou removê-la conforme necessário.
 
+        }
+
+        private void btmCadConsulta_Click(object sender, EventArgs e)
+        {
+            cmd.Connection = con.conectar();
+
+            if (txtTipo.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo tipo");
+                txtNomeMédico.Focus();
+            }
+            else if (txtValor.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo valor");
+                txtCrm.Focus();
+            }
+            else if (comboMedicoCon.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo médico");
+                txtTelefoneMed.Focus();
+            }
+            else
+            {
+                try
+                {
+                    string nome = txtTipo.Text;
+                    string valor = txtValor.Text;
+                    int med = int.Parse(comboMedicoCon.SelectedValue.ToString());
+
+                    cmd.CommandText = $"insert into Consultas values('{nome}','{valor}','{med}');";
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Consulta cadastrado com sucesso!!!", "Cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    txtTipo.Text = "";
+                    txtValor.Text = "";
+                    comboMedicoCon.Text = "";
+
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.Message + "\n\n" + x.StackTrace + "ERRO" + MessageBoxButtons.OK + MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    con.desconectar();
+                }
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtTipo.Text = "";
+            txtValor.Text = "";
+            comboMedicoCon.Text = "";
         }
     }
 }

@@ -43,6 +43,8 @@ namespace MyClinicMed
             this.medicosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clinicaEnfanceDataSet1 = new MyClinicMed.ClinicaEnfanceDataSet1();
             this.comboConsulta = new System.Windows.Forms.ComboBox();
+            this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clinicaEnfanceAtu = new MyClinicMed.ClinicaEnfanceAtu();
             this.txtHora = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCpf = new System.Windows.Forms.MaskedTextBox();
@@ -61,8 +63,13 @@ namespace MyClinicMed
             this.lblID = new System.Windows.Forms.Label();
             this.comboValor = new System.Windows.Forms.ComboBox();
             this.medicosTableAdapter = new MyClinicMed.ClinicaEnfanceDataSet1TableAdapters.MedicosTableAdapter();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.consultasTableAdapter = new MyClinicMed.ClinicaEnfanceAtuTableAdapters.ConsultasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceAtu)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgendamento)).BeginInit();
             this.SuspendLayout();
@@ -77,12 +84,13 @@ namespace MyClinicMed
             this.btmAtualizar.TabIndex = 0;
             this.btmAtualizar.Text = "Atualizar";
             this.btmAtualizar.UseVisualStyleBackColor = true;
+            this.btmAtualizar.Click += new System.EventHandler(this.btmAtualizar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 41);
+            this.label1.Location = new System.Drawing.Point(9, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 21);
@@ -92,7 +100,7 @@ namespace MyClinicMed
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(216, 35);
+            this.txtNome.Location = new System.Drawing.Point(216, 14);
             this.txtNome.Margin = new System.Windows.Forms.Padding(5);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(244, 27);
@@ -102,7 +110,7 @@ namespace MyClinicMed
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 76);
+            this.label2.Location = new System.Drawing.Point(9, 55);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 21);
@@ -113,7 +121,7 @@ namespace MyClinicMed
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 144);
+            this.label3.Location = new System.Drawing.Point(9, 160);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 21);
@@ -124,7 +132,7 @@ namespace MyClinicMed
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 179);
+            this.label4.Location = new System.Drawing.Point(9, 195);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(168, 21);
@@ -135,7 +143,7 @@ namespace MyClinicMed
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 212);
+            this.label5.Location = new System.Drawing.Point(9, 228);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 21);
@@ -146,7 +154,7 @@ namespace MyClinicMed
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 245);
+            this.label6.Location = new System.Drawing.Point(9, 261);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(173, 21);
@@ -171,7 +179,7 @@ namespace MyClinicMed
             this.comboMedico.DataSource = this.medicosBindingSource;
             this.comboMedico.DisplayMember = "nome_medico";
             this.comboMedico.FormattingEnabled = true;
-            this.comboMedico.Location = new System.Drawing.Point(216, 136);
+            this.comboMedico.Location = new System.Drawing.Point(216, 152);
             this.comboMedico.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboMedico.Name = "comboMedico";
             this.comboMedico.Size = new System.Drawing.Size(244, 29);
@@ -190,24 +198,30 @@ namespace MyClinicMed
             // 
             // comboConsulta
             // 
+            this.comboConsulta.DataSource = this.consultasBindingSource;
+            this.comboConsulta.DisplayMember = "tipo";
             this.comboConsulta.FormattingEnabled = true;
-            this.comboConsulta.Items.AddRange(new object[] {
-            "Exames",
-            "Consulta",
-            "Acompanhamento",
-            "Avaliação",
-            "Inicial",
-            "Check In",
-            "Outro"});
-            this.comboConsulta.Location = new System.Drawing.Point(216, 171);
+            this.comboConsulta.Location = new System.Drawing.Point(216, 187);
             this.comboConsulta.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboConsulta.Name = "comboConsulta";
             this.comboConsulta.Size = new System.Drawing.Size(244, 29);
             this.comboConsulta.TabIndex = 15;
+            this.comboConsulta.ValueMember = "id_consulta";
+            this.comboConsulta.SelectedIndexChanged += new System.EventHandler(this.comboConsulta_SelectedIndexChanged);
+            // 
+            // consultasBindingSource
+            // 
+            this.consultasBindingSource.DataMember = "Consultas";
+            this.consultasBindingSource.DataSource = this.clinicaEnfanceAtu;
+            // 
+            // clinicaEnfanceAtu
+            // 
+            this.clinicaEnfanceAtu.DataSetName = "ClinicaEnfanceAtu";
+            this.clinicaEnfanceAtu.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtHora
             // 
-            this.txtHora.Location = new System.Drawing.Point(216, 239);
+            this.txtHora.Location = new System.Drawing.Point(216, 255);
             this.txtHora.Mask = "90:00";
             this.txtHora.Name = "txtHora";
             this.txtHora.Size = new System.Drawing.Size(100, 27);
@@ -218,7 +232,7 @@ namespace MyClinicMed
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 109);
+            this.label7.Location = new System.Drawing.Point(9, 88);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 21);
@@ -227,7 +241,7 @@ namespace MyClinicMed
             // 
             // txtCpf
             // 
-            this.txtCpf.Location = new System.Drawing.Point(216, 103);
+            this.txtCpf.Location = new System.Drawing.Point(216, 82);
             this.txtCpf.Mask = "000.000.000-00";
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(130, 27);
@@ -235,7 +249,7 @@ namespace MyClinicMed
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(216, 70);
+            this.txtTelefone.Location = new System.Drawing.Point(216, 49);
             this.txtTelefone.Mask = "(99) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(130, 27);
@@ -245,7 +259,7 @@ namespace MyClinicMed
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(9, 279);
+            this.label8.Location = new System.Drawing.Point(9, 295);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 21);
@@ -300,7 +314,7 @@ namespace MyClinicMed
             this.dgvAgendamento.AllowUserToAddRows = false;
             this.dgvAgendamento.AllowUserToDeleteRows = false;
             this.dgvAgendamento.AllowUserToOrderColumns = true;
-            this.dgvAgendamento.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAgendamento.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAgendamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgendamento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAgendamento.Location = new System.Drawing.Point(0, 0);
@@ -337,7 +351,7 @@ namespace MyClinicMed
             // 
             // dataAgendamento
             // 
-            this.dataAgendamento.Location = new System.Drawing.Point(216, 207);
+            this.dataAgendamento.Location = new System.Drawing.Point(216, 223);
             this.dataAgendamento.Name = "dataAgendamento";
             this.dataAgendamento.Size = new System.Drawing.Size(200, 27);
             this.dataAgendamento.TabIndex = 29;
@@ -358,7 +372,7 @@ namespace MyClinicMed
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(485, 41);
+            this.label11.Location = new System.Drawing.Point(485, 20);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(31, 21);
             this.label11.TabIndex = 31;
@@ -367,7 +381,7 @@ namespace MyClinicMed
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(513, 41);
+            this.lblID.Location = new System.Drawing.Point(513, 20);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(68, 21);
             this.lblID.TabIndex = 32;
@@ -375,27 +389,51 @@ namespace MyClinicMed
             // 
             // comboValor
             // 
+            this.comboValor.DataSource = this.consultasBindingSource;
+            this.comboValor.DisplayMember = "valor";
+            this.comboValor.Enabled = false;
             this.comboValor.FormattingEnabled = true;
-            this.comboValor.Items.AddRange(new object[] {
-            "200",
-            "100",
-            "500",
-            "800",
-            "50"});
-            this.comboValor.Location = new System.Drawing.Point(216, 271);
+            this.comboValor.Location = new System.Drawing.Point(216, 287);
             this.comboValor.Name = "comboValor";
             this.comboValor.Size = new System.Drawing.Size(100, 29);
             this.comboValor.TabIndex = 33;
+            this.comboValor.ValueMember = "tipo";
             // 
             // medicosTableAdapter
             // 
             this.medicosTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtEndereco
+            // 
+            this.txtEndereco.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEndereco.Location = new System.Drawing.Point(216, 117);
+            this.txtEndereco.Margin = new System.Windows.Forms.Padding(5);
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(244, 27);
+            this.txtEndereco.TabIndex = 35;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(9, 123);
+            this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 21);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "Endereço:";
+            // 
+            // consultasTableAdapter
+            // 
+            this.consultasTableAdapter.ClearBeforeFill = true;
             // 
             // FormAgendamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 564);
+            this.Controls.Add(this.txtEndereco);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.comboValor);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.label11);
@@ -431,6 +469,8 @@ namespace MyClinicMed
             this.Load += new System.EventHandler(this.FormAgendamento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.medicosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clinicaEnfanceAtu)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgendamento)).EndInit();
             this.ResumeLayout(false);
@@ -471,5 +511,10 @@ namespace MyClinicMed
         private ClinicaEnfanceDataSet1 clinicaEnfanceDataSet1;
         private System.Windows.Forms.BindingSource medicosBindingSource;
         private ClinicaEnfanceDataSet1TableAdapters.MedicosTableAdapter medicosTableAdapter;
+        private System.Windows.Forms.TextBox txtEndereco;
+        private System.Windows.Forms.Label label10;
+        private ClinicaEnfanceAtu clinicaEnfanceAtu;
+        private System.Windows.Forms.BindingSource consultasBindingSource;
+        private ClinicaEnfanceAtuTableAdapters.ConsultasTableAdapter consultasTableAdapter;
     }
 }

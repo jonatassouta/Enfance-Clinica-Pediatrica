@@ -61,7 +61,7 @@ namespace MyClinicMed
 
         private void btmAgendamento_Click(object sender, EventArgs e)
         {
-            AbrirFomularioFilho(new FormAgendamento(this));
+            AbrirFomularioFilho(new FormAgendamento(this, new Login()));
         }
 
         private void btmCadastros_Click(object sender, EventArgs e)
